@@ -178,5 +178,5 @@ for label, cfg in cases.items():
         cfg['base_colour'],
         cfg['log_params']
     )
-    fname = f'interactive_radial_{label}_with_inset.html'
+    fname = f'./plots/interactive_radial_{label}_with_inset.html'
     panel.save(fname, embed=True)

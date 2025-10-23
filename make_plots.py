@@ -30,7 +30,7 @@ with h5py.File('stripped_density_profiles_rbins_weighted_variations_fine.h5', 'r
                 results_fine[label][key] = results
 
 # helper functions
-def make_envelope(y_all, r_log, xlim=(-2, 0), ylim=(-3.6, 1)):
+def make_envelope(y_all, r_log, xlim=(-2, 0), ylim=(-3.6, 0.2)):
     y_min = np.nanmin(np.where(y_all > 0, y_all, np.nan), axis=0)
     y_max = np.nanmax(np.where(y_all > 0, y_all, np.nan), axis=0)
     return hv.Area(
@@ -82,7 +82,8 @@ def smf_inset(alpha, mstar):
     return hv.Curve((np.log10(M_grid), vals)).opts(
         width=300, height=300, line_color='k',
         xlabel='log10(M★)', ylabel='log10(φ)',
-        xlim=(9, 12), ylim=(-6, -1.5), show_frame=True
+        xlim=(9, 12), ylim=(-6, -1.5), show_frame=True,
+        tools=['hover'], active_tools=[]
     )
 
 def p_eta_pdf(eta_vals, a=2.05, b=1.90):
@@ -94,11 +95,13 @@ def p_eta_inset(alpha, beta):
     return hv.Curve((eta, pdf)).opts(
         width=300, height=300, line_color='k',
         xlabel='η', ylabel='p(η)',
-        xlim=(0, 1), ylim=(0, 2), show_frame=True
+        xlim=(0, 1), ylim=(0, 2), show_frame=True,
+        tools=['hover'], active_tools=[]
     )
 
 # general plotting function for envelope, single profile and inset plot
 def make_interactive_plot(results_list, envelope, inset_func, param_names, defaults, base_colour, log_params):
+
     raw_params = np.array([r[0] for r in results_list], dtype=float)
     # convert to log10 where asked to
     display_params = raw_params.copy()
@@ -117,16 +120,20 @@ def make_interactive_plot(results_list, envelope, inset_func, param_names, defau
         color = colour_for_profile(idx, results_list, base_colour)
         curve = hv.Curve((r_log, y_all_log[idx])).opts(
             color=color, line_width=8,
-            xlabel='log10(r / R200)', ylabel='log10(ρ* / ρDM)'
+            xlabel='log10(r / R200)', ylabel='log10(ρ* / ρDM)',
+            xlim=(-1, 0),
+            ylim=(-3.6, 0.2), tools=['hover'], active_tools=[]
         )
+
         inset = inset_func(**{k: kwargs[k] for k in param_names})
         return (envelope * curve) + inset
+
 
     # build sliders from display_params
     sliders = []
     for i, pname in enumerate(param_names):
         options = np.unique(display_params[:, i])
-        # cast to python floats and filter nan if any
+        # filter nan if any
         options = [float(x) for x in options[np.isfinite(options)]]
         if len(options) == 0:
             options = [defaults[i]]

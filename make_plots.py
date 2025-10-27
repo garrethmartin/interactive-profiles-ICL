@@ -113,17 +113,43 @@ def make_interactive_plot(results_list, envelope, inset_func, param_names, defau
     y_all_log = np.log10(np.where(y_all > 0, y_all, np.nan))
 
     def plot_fn(**kwargs):
-        # kwargs are slider values
         target = np.array([kwargs[k] for k in param_names], dtype=float)
         idx = find_nearest_index(display_params, target)
 
+        y_profile = y_all_log[idx]
+        mask = r_log > -1  # region for slope fitting
+        x_fit = r_log[mask]
+        y_fit = y_profile[mask]
+
+        # Ensure finite values
+        valid = np.isfinite(x_fit) & np.isfinite(y_fit)
+        if np.sum(valid) > 2:
+            slope, intercept = np.polyfit(x_fit[valid], y_fit[valid], 1)
+        else:
+            slope, intercept = np.nan, np.nan
+
         color = colour_for_profile(idx, results_list, base_colour)
-        curve = hv.Curve((r_log, y_all_log[idx])).opts(
-            color=color, line_width=8,
+        curve = hv.Curve((r_log, y_profile)).opts(
+            color=color, line_width=6,
             xlabel='log10(r / R200)', ylabel='log10(ρ* / ρDM)',
-            xlim=(-1, 0),
-            ylim=(-3.6, 0.2), tools=['hover'], active_tools=[]
+            xlim=(-1, 0), ylim=(-3.6, 0.2),
+            tools=['hover'], active_tools=[]
         )
+
+        # Add slope annotation
+        if np.isfinite(slope):
+            # Pick text position slightly above the last valid y in fit region
+            x_text = -0.5
+            y_text = np.polyval([slope, intercept], x_text) + 0.1
+            label = hv.Text(
+                x_text, y_text, f"slope = {slope:.2f}"
+            ).opts(
+                text_align='left',
+                text_baseline='bottom',
+                text_color='black',
+                text_font_size='12pt'
+            )
+            curve = curve * label
 
         inset = inset_func(**{k: kwargs[k] for k in param_names})
         return (envelope * curve) + inset
@@ -185,5 +211,16 @@ for label, cfg in cases.items():
         cfg['base_colour'],
         cfg['log_params']
     )
+
+    caption_text = (
+    "<p style='font-size:14px; color:black; text-align:center;'>"
+    "Figure: Interactive plot showing parameter dependence of the ratio of the stellar and DM radial density profiles."
+    "Use sliders to explore the parameter space."
+    "</p>"
+    )
+
+    caption = pn.pane.HTML(caption_text)
+    layout = pn.Column(panel, caption)
+
     fname = f'./plots/interactive_radial_{label}_with_inset.html'
-    panel.save(fname, embed=True)
+    layout.save(fname, embed=True)

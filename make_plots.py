@@ -211,13 +211,24 @@ for label, cfg in cases.items():
         cfg['base_colour'],
         cfg['log_params']
     )
+    
+    if label == 'smf':
+        caption_text = (
+        "<p style='font-size:16px; color:black; text-align:center;'>"
+        "Figure: Left: Interactive plot of the ratio between stellar and dark-matter radial density profiles predicted by the model for a given infalling satellite population. "
+        "Each curve is the superposed profile obtained by integrating individual satellite contributions across the population; the sliders adjust the population parameters (low-mass slope α and characteristic stellar mass M★), which alter the integrated profile. "
+        "Right: The corresponding infall galaxy stellar mass function for the current slider settings."
+        "</p>"
+        )
 
-    caption_text = (
-    "<p style='font-size:14px; color:black; text-align:center;'>"
-    "Figure: Interactive plot showing parameter dependence of the ratio of the stellar and DM radial density profiles."
-    "Use sliders to explore the parameter space."
-    "</p>"
-    )
+    if label == 'p_eta':
+        caption_text = (
+        "<p style='font-size:16px; color:black; text-align:center;'>"
+        "Figure: Left: Interactive plot of the ratio between stellar and dark-matter radial density profiles predicted by the model for a given infalling satellite population. "
+        "Each curve is the superposed profile obtained by integrating individual satellite contributions across the population; the sliders adjust the population's orbital circularity distribution (α and β), which alter the integrated profile. "
+        "Right: The corresponding infall satellite orbital circularity distribution for the current slider settings."
+        "</p>"
+        )
 
     caption = pn.pane.HTML(caption_text)
     layout = pn.Column(panel, caption)

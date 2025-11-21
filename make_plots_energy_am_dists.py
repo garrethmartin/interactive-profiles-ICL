@@ -97,6 +97,7 @@ def plot_energy_am(mass, eta):
     kx_dm_x, ky_dm_x = d['kde_dm_x']
     kde_x = (hv.Curve((kx_star_x, ky_star_x)).opts(color='darkgreen', line_width=2) *
              hv.Curve((kx_dm_x, ky_dm_x)).opts(color='purple', line_width=2)).opts(
+                 xlim=(1e6, 5e6),
                  width=600, height=100, xaxis=None, yaxis=None, tools=[], active_tools=[]
              )
 
@@ -105,6 +106,7 @@ def plot_energy_am(mass, eta):
     kx_dm_y, ky_dm_y = d['kde_dm_y']
     kde_y = (hv.Curve((ky_star_y, kx_star_y)).opts(color='darkgreen', line_width=2) *
              hv.Curve((ky_dm_y, kx_dm_y)).opts(color='purple', line_width=2)).opts(
+                 ylim=(-0.1e5, 7e5),
                  width=100, height=600, xaxis=None, yaxis=None, tools=[], active_tools=[]
              )
 
@@ -125,7 +127,7 @@ def plot_energy_am(mass, eta):
 mass_values = sorted({key[0] for key in results.keys()})
 eta_values = sorted({key[1] for key in results.keys()})
 
-mass_slider = pn.widgets.DiscreteSlider(name='Msat/Mhost', options=mass_values, value=mass_values[0])
+mass_slider = pn.widgets.DiscreteSlider(name='Msat/Mhost', options=mass_values, value=mass_values[4])
 eta_slider = pn.widgets.DiscreteSlider(name='η', options=eta_values, value=eta_values[2])
 
 interactive_plot = pn.bind(plot_energy_am, mass=mass_slider, eta=eta_slider)

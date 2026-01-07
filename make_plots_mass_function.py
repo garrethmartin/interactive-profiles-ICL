@@ -20,25 +20,9 @@ with h5py.File('parameter_exploration_fine.hdf5', 'r') as f:
             else:
                 results_fine[label][vary] = (
                     grp_vary['param_values'][()],
-                    grp_vary['medians_e'][()],
-                    grp_vary['p16_e'][()],
-                    grp_vary['p84_e'][()],
-                    grp_vary['p3low_e'][()],
-                    grp_vary['p3high_e'][()],
-                    grp_vary['medians_h'][()],
-                    grp_vary['p16_h'][()],
-                    grp_vary['p84_h'][()],
-                    grp_vary['p3low_h'][()],
-                    grp_vary['p3high_h'][()],
-                    grp_vary['percs_all_1s_e'][()],
-                    grp_vary['percs_all_1s_h'][()],
-                    grp_vary['percs_all_3s_e'][()],
-                    grp_vary['percs_all_3s_h'][()],
-                    grp_vary['stripped_ratio_mean'][()],
                     grp_vary['stellar_stripped_all'][()],
                     grp_vary['m_grids'][()],
                 )
-
 
 def find_nearest_index(params, target):
     """Return index of parameter set closest to target."""
@@ -48,7 +32,7 @@ def find_nearest_index(params, target):
     dist = np.sqrt(np.sum(((target - arr)/scale)**2, axis=1))
     return int(np.nanargmin(dist))
 
-def compute_shades(all_profiles, base_colour='lightsteelblue'):
+def compute_shades(all_profiles, base_colour='steelblue'):
     """Precompute colours for each profile based on min value (for ordering)."""
     scalars = np.array([np.nanmin(np.asarray(p)) for p in all_profiles])
     scalars = np.nan_to_num(scalars, nan=-np.inf)
@@ -56,7 +40,7 @@ def compute_shades(all_profiles, base_colour='lightsteelblue'):
     if N <= 1:
         return [(*mpl.colors.to_rgb(base_colour), 1.0)]*N
     order = np.argsort(scalars)
-    shades = np.linspace(0.98, 0.12, N)
+    shades = np.linspace(0.98, 0.4, N)
     shade_for_index = np.empty(N)
     shade_for_index[order] = shades
     colours = []
@@ -207,7 +191,7 @@ cases = {
         inset_func=smf_inset,
         param_names=['alpha','mstar'],
         defaults=[-1.3,np.log10(2e11)],
-        base_colour='lightsteelblue',
+        base_colour='steelblue',
         log_params=[False, True]
     ),
     'p_eta': dict(
@@ -215,7 +199,7 @@ cases = {
         inset_func=p_eta_inset,
         param_names=['alpha','beta'],
         defaults=[2.05,1.90],
-        base_colour='palegreen',
+        base_colour='limegreen',
         log_params=[False, False]
     )
 }

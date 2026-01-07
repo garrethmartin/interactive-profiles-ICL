@@ -217,8 +217,9 @@ for label, cfg in cases.items():
         y_3sigma = results_list[14].flatten()
 
         env = make_envelope(x_1sigma, y_1sigma, cfg['base_colour'], xlim=xlim, ylim=ylim)
-        env_2 = make_envelope(x_3sigma, y_3sigma, cfg['base_colour'])
-        envs.append(env * env_2)
+        #env_2 = make_envelope(x_3sigma, y_3sigma, cfg['base_colour'])
+        #envs.append(env * env_2)
+        envs.append(env)
         results_lists.append(results_list)
 
     panel = make_interactive_plot(

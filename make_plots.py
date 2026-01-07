@@ -42,14 +42,14 @@ def make_envelope(y_all, r_log, xlim=(-2, 0), ylim=(-3.6, 0.2)):
         xlabel='log10(r / R200)', ylabel='log10(ρ* / ρDM)'
     )
 
-def colour_for_profile(idx, results_list, base_colour='lightsteelblue'):
+def colour_for_profile(idx, results_list, base_colour='steelblue'):
     max_vals = np.array([np.nanmin(10**(r[2]-r[1])) for r in results_list])
     max_vals = np.nan_to_num(max_vals, nan=-np.inf)
     N = len(max_vals)
     if N == 0:
         return 'black'
     order_desc = np.argsort(max_vals)
-    shades = np.linspace(0.98, 0.12, N)
+    shades = np.linspace(0.98, 0.4, N)
     shade_for_index = np.empty(N)
     shade_for_index[order_desc] = shades
     s = float(np.clip(shade_for_index[idx], 0, 1))
@@ -185,7 +185,7 @@ cases = {
         inset_func=smf_inset,
         param_names=['alpha', 'mstar'],
         defaults=[-1.3, np.log10(2e11)],
-        base_colour='lightsteelblue',
+        base_colour='steelblue',
         log_params=[False, True],
     ),
     'p_eta': dict(
@@ -193,7 +193,7 @@ cases = {
         inset_func=p_eta_inset,
         param_names=['alpha', 'beta'],
         defaults=[2.05, 1.90],
-        base_colour='palegreen',
+        base_colour='limegreen',
         log_params=[False, False],
     ),
 }

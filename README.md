@@ -54,4 +54,4 @@ Dependencies:
 
 ---
 
-*This repository is a companion to the published paper, providing interactive visualisations and a Gaussian process framework for quantifying the spatial and phase-space properties of stripped stars and dark matter.*
+*This repository is a companion to the published paper, providing interactive visualisations and a model for quantifying the spatial and phase-space properties of stripped stars and dark matter.*

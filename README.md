@@ -1,6 +1,8 @@
 # interactive-profiles-ICL
 
 [![License: GPL‑3.0](https://img.shields.io/badge/license-GPLv3-blue)](LICENSE)
+[![Interactive plots](https://img.shields.io/badge/Interactive%20Plots-GitHub%20Pages-blue?logo=github&logoColor=white)](https://garrethmartin.github.io/interactive-profiles-ICL/)
+
 
 Companion repository for the paper
 
@@ -25,6 +27,14 @@ This repository supports reproducibility of the paper’s results by providing:
    - Radial distributions of stripped material within the cluster  
 
    The modelling code, including inference configuration and validation procedures, is in the [`MCMC/`](https://github.com/garrethmartin/interactive-profiles-ICL/tree/main/MCMC) folder.
+
+---
+
+## Live Site
+
+The interactive figures are also deployed online via GitHub Pages. You can explore them at:
+
+[https://garrethmartin.github.io/interactive-profiles-ICL/](https://garrethmartin.github.io/interactive-profiles-ICL/)
 
 ---
 

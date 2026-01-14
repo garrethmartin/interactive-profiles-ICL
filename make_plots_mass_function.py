@@ -191,7 +191,7 @@ cases = {
         inset_func=smf_inset,
         param_names=['alpha','mstar'],
         defaults=[-1.3,np.log10(2e11)],
-        base_colour='steelblue',
+        base_colour='darkorange',
         log_params=[False, True]
     ),
     'p_eta': dict(
@@ -199,7 +199,7 @@ cases = {
         inset_func=p_eta_inset,
         param_names=['alpha','beta'],
         defaults=[2.05,1.90],
-        base_colour='limegreen',
+        base_colour='teal',
         log_params=[False, False]
     )
 }

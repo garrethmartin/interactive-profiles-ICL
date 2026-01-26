@@ -6,7 +6,7 @@
 
 Companion repository for the paper
 
-**“How satellite populations and their orbits set the phase-space relationship between intracluster light and dark matter”**  
+**“Intracluster light as a dark matter tracer: how their spatial and kinematic relationship is shaped by satellite demographics”**  
 G. Martin et al., School of Physics & Astronomy, University of Nottingham
 
 This repository contains the interactive figures and supporting analysis code used in the paper, including the modelling framework used to characterise how satellite properties map to the spatial and phase-space distribution of stripped stars and dark matter.

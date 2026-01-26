@@ -2,7 +2,7 @@
 
 conda activate pymc_env
 
-python make_plots_energy_am_dists.py
+python make_plots_energy_am_dists_with_spatial.py
 #python make_plots_energy_am.py
 python make_plots_energy_am_with_central.py
 python make_plots_mass_function.py

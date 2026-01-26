@@ -61,7 +61,7 @@ def make_envelope(y_all, m_log, xlim=(9,12)):
         kdims=['log_m'], vdims=['ymin','ymax']
     ).opts(
         fill_color='lightgrey', fill_alpha=0.2,
-        line_alpha=0, width=600, height=600,
+        line_alpha=0, width=375, height=375,
         xlim=xlim,
         xlabel='log10(M★ / M☉)'
     )
@@ -78,7 +78,7 @@ def smf_inset(alpha, mstar):
     M_grid = np.logspace(9,12,25)
     vals = np.log10(smf(M_grid, M_star0=M_star0, alpha=alpha))
     return hv.Curve((np.log10(M_grid), vals)).opts(
-        width=300, height=300, line_color='k',
+        width=200, height=200, line_color='k',
         xlabel='log10(M★)', ylabel='log10(φ)',
         xlim=(9,12), ylim=(-6,-1.5),
         show_frame=True, tools=['hover'], active_tools=[]
@@ -91,7 +91,7 @@ def p_eta_inset(alpha, beta):
     eta = np.linspace(0,1,200)
     pdf = p_eta_pdf(eta, a=alpha, b=beta)
     return hv.Curve((eta, pdf)).opts(
-        width=300, height=300, line_color='k',
+        width=200, height=200, line_color='k',
         xlabel='η', ylabel='p(η)',
         xlim=(0,1), ylim=(0,2),
         show_frame=True, tools=['hover'], active_tools=[]
@@ -125,7 +125,7 @@ def make_interactive_plot(results_lists, envelopes, envelopes_cdf, inset_func, p
                 line_color=curve_colours_all[i][idx],
                 tools=[], active_tools=[],
                 xlabel='log10(M★ / M☉)',
-                height=600, width=600
+                height=375, width=375
             )
 
             if i == 0:
@@ -242,5 +242,5 @@ for label, cfg in cases.items():
     caption = pn.pane.HTML(caption_text)
     layout = pn.Column(panel, caption)
 
-    fname = f'./plots/interactive_stripping_{label}.html'
+    fname = f'./plots/mass_{label}.html'
     layout.save(fname, embed=True)

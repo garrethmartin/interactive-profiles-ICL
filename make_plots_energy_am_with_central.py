@@ -80,7 +80,7 @@ def make_envelope(x_data, y_data, colour, xlim=(0.25, 1), ylim=(0.1,0.5)):
     return hv.Polygons(
         [{('x', 'y'): hull}]).opts(
         color=colour, alpha=0.5, line_color=colour,
-        width=600, height=600,
+        width=375, height=375,
         xlim=xlim, ylim=ylim
     )
 
@@ -122,7 +122,7 @@ def smf_inset(alpha, mstar):
     M_grid = np.logspace(9, 12, 25)
     vals = np.log10(smf(M_grid, M_star0=M_star0, alpha=alpha))
     return hv.Curve((np.log10(M_grid), vals)).opts(
-        width=300, height=300, line_color='k',
+        width=200, height=200, line_color='k',
         xlabel='log10(M★)', ylabel='log10(φ)',
         xlim=(9, 12), ylim=(-6, -1.5), show_frame=True,
         tools=['hover'], active_tools=[]
@@ -135,7 +135,7 @@ def p_eta_inset(alpha, beta):
     eta = np.linspace(0, 1, 200)
     pdf = p_eta_pdf(eta, a=alpha, b=beta)
     return hv.Curve((eta, pdf)).opts(
-        width=300, height=300, line_color='k',
+        width=200, height=200, line_color='k',
         xlabel='η', ylabel='p(η)',
         xlim=(0, 1), ylim=(0, 2), show_frame=True,
         tools=['hover'], active_tools=[]
@@ -275,11 +275,11 @@ def make_interactive_plot(results_lists, envelope, inset_func, param_names, defa
         for x, y, x_e, y_e in zip(xs, ys, x_errs, y_errs):
 
             ebar_x = hv.ErrorBars((x[idx], y[idx], x_e[idx]), horizontal=True).opts(
-                color='k', width=600, height=600, tools=[], active_tools=[]
+                color='k', width=375, height=375, tools=[], active_tools=[]
             )
 
             ebar_y = hv.ErrorBars((x[idx], y[idx], y_e[idx]), horizontal=False).opts(
-                color='k', width=600, height=600, tools=[], active_tools=[],
+                color='k', width=375, height=375, tools=[], active_tools=[],
                 xlabel='<ɛ>* / <ɛ>DM', ylabel='<h>* / <h>DM',
             )
 
@@ -361,10 +361,10 @@ def make_interactive_plot_two_variants(
         env = envelopes_by_panel[panel_idx][variant].opts(alpha=a, line_dash=line_dash)
 
         ebar_x = hv.ErrorBars((x, y, x_e), horizontal=True).opts(
-            color=ebar_col, width=600, height=600, tools=[], active_tools=[]
+            color=ebar_col, width=375, height=375, tools=[], active_tools=[]
         )
         ebar_y = hv.ErrorBars((x, y, y_e), horizontal=False).opts(
-            color=ebar_col, width=600, height=600, tools=[], active_tools=[],
+            color=ebar_col, width=375, height=375, tools=[], active_tools=[],
             xlabel='<ɛ>* / <ɛ>DM', ylabel='<h>* / <h>DM'
         )
         # add a visible centre marker for the accreted-only case
@@ -385,7 +385,7 @@ def make_interactive_plot_two_variants(
             ).opts(
                 xlim=xlim_by_panel[pidx],
                 ylim=ylim_by_panel[pidx],
-                width=600, height=600
+                width=375, height=375
             )
 
             title = hv.Text(
@@ -479,5 +479,5 @@ for label, cfg in cases.items():
     caption = pn.pane.HTML(caption_text)
     layout = pn.Column(panel, caption)
 
-    fname = f'./plots/interactive_e_am_{label}.html'
+    fname = f'./plots/e_am_{label}.html'
     layout.save(fname, embed=True)

@@ -306,5 +306,5 @@ for label, cfg in cases.items():
     caption = pn.pane.HTML(caption_text)
     layout = pn.Column(panel, caption)
 
-    fname = f'./plots/interactive_radial_{label}_with_inset.html'
+    fname = f'./plots/radial_{label}.html'
     layout.save(fname, embed=True)

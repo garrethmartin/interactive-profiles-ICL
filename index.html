@@ -1,38 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Interactive Plots</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Plots</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+}
+h1 {
+    color: #2c3e50;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+.section {
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+.section-header {
+    padding: 20px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+.section-header:hover {
+    background-color: #2980b9;
+}
+.section-header h2 {
+    margin: 0;
+    font-size: 1.4em;
+}
+.toggle-icon {
+    font-size: 1.5em;
+    transition: transform 0.3s;
+}
+.section-header.expanded .toggle-icon {
+    transform: rotate(180deg);
+}
+.section-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    padding: 0;
+}
+.plot-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.plot-container h3 {
+    color: #34495e;
+    margin: 0 0 10px 0;
+}
+.plot-container iframe {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: #fafafa;
+}
+.external-link {
+    display: inline-block;
+    padding: 15px 25px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.external-link:hover {
+    background-color: #2980b9;
+}
+</style>
 </head>
 <body>
-   <h1>Interactive Energy and Angular Momentum Distribution</h1>
-  <ul>
-    <li><a href="plots/interactive_energy_am_distribution.html">Distributions as a function of merger mass ratio and orbit</a></li>
-  </ul>
+<h1>Interactive Plots</h1>
 
-   <h1>Interactive Contribution to Stripped Stellar Mass</h1>
-  <ul>
-    <li><a href="plots/interactive_stripping_smf.html">SMF variations</a></li>
-    <li><a href="plots/interactive_stripping_p_eta.html">p(η) variations</a></li>
-  </ul>
-  
-  <h1>Interactive Average Energy and Angular Momentum</h1>
-  <ul>
-    <li><a href="plots/interactive_e_am_smf.html">SMF variations</a></li>
-    <li><a href="plots/interactive_e_am_p_eta.html">p(η) variations</a></li>
-  </ul>
+<div id="energy-am" class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+        <h2>Energy and Angular Momentum Distribution</h2>
+        <span class="toggle-icon">▼</span>
+    </div>
+    <div class="section-content">
+        <div class="plot-container">
+            <h3>Distributions as a function of merger mass ratio and orbit</h3>
+            <iframe data-src="plots/e_h_dist.html" style="height: 900px;"></iframe>
+        </div>
+    </div>
+</div>
 
-  <h1>Interactive Radial Profiles</h1>
-  <ul>
-    <li><a href="plots/interactive_radial_smf_with_inset.html">SMF variations</a></li>
-    <li><a href="plots/interactive_radial_p_eta_with_inset.html">p(η) variations</a></li>
-  </ul>
+<div id="stripping" class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+        <h2>Contribution to Stripped Stellar Mass</h2>
+        <span class="toggle-icon">▼</span>
+    </div>
+    <div class="section-content">
+        <div class="plot-container">
+            <h3>SMF variations</h3>
+            <iframe data-src="plots/mass_smf.html" style="height: 500px;"></iframe>
+        </div>
+        <div class="plot-container">
+            <h3>p(η) variations</h3>
+            <iframe data-src="plots/mass_p_eta.html" style="height: 500px;"></iframe>
+        </div>
+    </div>
+</div>
+
+<div id="average-e-am" class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+        <h2>Average Energy and Angular Momentum</h2>
+        <span class="toggle-icon">▼</span>
+    </div>
+    <div class="section-content">
+        <div class="plot-container">
+            <h3>SMF variations</h3>
+            <iframe data-src="plots/e_am_smf.html" style="height: 500px;"></iframe>
+        </div>
+        <div class="plot-container">
+            <h3>p(η) variations</h3>
+            <iframe data-src="plots/e_am_p_eta.html" style="height: 500px;"></iframe>
+        </div>
+    </div>
+</div>
+
+<div id="radial" class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+        <h2>Radial Profiles</h2>
+        <span class="toggle-icon">▼</span>
+    </div>
+    <div class="section-content">
+        <div class="plot-container">
+            <h3>SMF variations</h3>
+            <iframe data-src="plots/radial_smf.html" style="height: 700px;"></iframe>
+        </div>
+        <div class="plot-container">
+            <h3>p(η) variations</h3>
+            <iframe data-src="plots/radial_p_eta.html" style="height: 700px;"></iframe>
+        </div>
+    </div>
+</div>
+
+<div id="code" class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+        <h2>LMC Model Code</h2>
+        <span class="toggle-icon">▼</span>
+    </div>
+    <div class="section-content">
+        <a href="https://github.com/garrethmartin/interactive-profiles-ICL/tree/main/MCMC/" class="external-link" target="_blank">View MCMC LMC Code on GitHub →</a>
+    </div>
+</div>
+
+<script>
+function toggleSection(header) {
+    const content = header.nextElementSibling;
+    const isExpanded = content.classList.contains('expanded');
+
+    if (!isExpanded) {
+        // Lazy-load iframes
+        const iframes = content.querySelectorAll('iframe[data-src]');
+        iframes.forEach(iframe => {
+            if (!iframe.src) iframe.src = iframe.dataset.src;
+        });
+
+        // Expand section
+        content.style.maxHeight = content.scrollHeight + "px";
+        header.classList.add('expanded');
+        content.classList.add('expanded');
+    } else {
+        // Collapse section
+        content.style.maxHeight = null;
+        header.classList.remove('expanded');
+        content.classList.remove('expanded');
+    }
+}
+
+// Expand section from URL hash
+window.addEventListener('load', function() {
+    if (window.location.hash) {
+        const section = document.querySelector(window.location.hash);
+        if (section) {
+            const header = section.querySelector('.section-header');
+            toggleSection(header);
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+});
+</script>
 </body>
-
-  <h1>LMC Model Code</h1>
-  <ul>
-    <li><a href="https://github.com/garrethmartin/interactive-profiles-ICL/tree/main/MCMC/">MCMC LMC code</a></li>
-  </ul>
-</body>
-
 </html>

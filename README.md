@@ -2,11 +2,12 @@
 
 [![License: GPL‑3.0](https://img.shields.io/badge/license-GPLv3-blue)](LICENSE)
 [![Interactive plots](https://img.shields.io/badge/Interactive%20Plots-GitHub%20Pages-blue?logo=github&logoColor=white)](https://garrethmartin.github.io/interactive-profiles-ICL/)
+[![arXiv](https://img.shields.io/badge/arXiv-2601.18693-b31b1b)](https://doi.org/10.48550/arXiv.2601.18693)
 
 
 Companion repository for the paper
 
-**“Intracluster light as a dark matter tracer: how their spatial and kinematic relationship is shaped by satellite demographics”**  
+**["Intracluster light as a dark matter tracer: how their spatial and kinematic relationship is shaped by satellite demographics"](https://doi.org/10.48550/arXiv.2601.18693)**  
 G. Martin et al., School of Physics & Astronomy, University of Nottingham
 
 This repository contains the interactive figures and supporting analysis code used in the paper, including the modelling framework used to characterise how satellite properties map to the spatial and phase-space distribution of stripped stars and dark matter.
@@ -15,7 +16,7 @@ This repository contains the interactive figures and supporting analysis code us
 
 ## Purpose
 
-This repository supports reproducibility of the paper’s results by providing:
+This repository supports reproducibility of the paper's results by providing:
 
 1. **Interactive figures**  
    Scripts that generate the plots used in the paper, visualising radial profiles and phase-space properties of stripped material.
@@ -55,3 +56,4 @@ Dependencies:
 ---
 
 *This repository is a companion to the published paper, providing interactive visualisations and a model for quantifying the spatial and phase-space properties of stripped stars and dark matter.*
+

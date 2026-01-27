@@ -19,6 +19,25 @@ h1 {
     padding-bottom: 10px;
     margin-bottom: 30px;
 }
+.info-card {
+    background-color: white;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+.info-card h2 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+.info-card ul {
+    margin: 10px 0 15px 20px;
+}
+.info-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
 .section {
     background-color: white;
     margin-bottom: 20px;
@@ -89,6 +108,16 @@ h1 {
 <body>
 <h1>Interactive Plots</h1>
 
+<div class="info-card">
+    <h2>About the Paper</h2>
+    <p>Interactive companion to <strong>"Intracluster light as a dark matter tracer: how their spatial and kinematic relationship is shaped by satellite demographics"</strong> (G. Martin et al.). The figures below allow interactive exploration of the the different parameters described in the paper and their impact on the phase-space offsets between ICL and DM.</p>
+
+    <div class="info-actions">
+        <a href="https://doi.org/10.48550/arXiv.2601.18693" class="external-link" target="_blank">Read the paper →</a>
+        <a href="https://github.com/garrethmartin/interactive-profiles-ICL/blob/main/README.md" class="external-link" target="_blank">View README →</a>
+    </div>
+</div>
+
 <div id="energy-am" class="section">
     <div class="section-header" onclick="toggleSection(this)">
         <h2>Energy and Angular Momentum Distribution</h2>
@@ -97,7 +126,7 @@ h1 {
     <div class="section-content">
         <div class="plot-container">
             <h3>Distributions as a function of merger mass ratio and orbit</h3>
-            <iframe data-src="plots/e_h_dist.html" style="height: 900px;"></iframe>
+            <iframe data-src="plots/e_h_dist.html" style="height: 950px;"></iframe>
         </div>
     </div>
 </div>
@@ -127,11 +156,11 @@ h1 {
     <div class="section-content">
         <div class="plot-container">
             <h3>SMF variations</h3>
-            <iframe data-src="plots/e_am_smf.html" style="height: 500px;"></iframe>
+            <iframe data-src="plots/e_am_smf.html" style="height: 550px;"></iframe>
         </div>
         <div class="plot-container">
             <h3>p(η) variations</h3>
-            <iframe data-src="plots/e_am_p_eta.html" style="height: 500px;"></iframe>
+            <iframe data-src="plots/e_am_p_eta.html" style="height: 550px;"></iframe>
         </div>
     </div>
 </div>
@@ -144,11 +173,11 @@ h1 {
     <div class="section-content">
         <div class="plot-container">
             <h3>SMF variations</h3>
-            <iframe data-src="plots/radial_smf.html" style="height: 700px;"></iframe>
+            <iframe data-src="plots/radial_smf.html" style="height: 800px;"></iframe>
         </div>
         <div class="plot-container">
             <h3>p(η) variations</h3>
-            <iframe data-src="plots/radial_p_eta.html" style="height: 700px;"></iframe>
+            <iframe data-src="plots/radial_p_eta.html" style="height: 800px;"></iframe>
         </div>
     </div>
 </div>
